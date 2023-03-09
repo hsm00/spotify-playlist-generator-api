@@ -84,7 +84,7 @@ exports.openAI = async (req, res) => {
     The structure of the list should be like this: artist - song.\n\n`;
 
     const response = await openai.createCompletion({
-        model: "text-davinci-003",
+        model: "gpt-3.5-turbo",
         prompt: prompt,
         max_tokens: 120,
         temperature: 0.9,
