@@ -8,7 +8,7 @@ const SpotifyWebApi = require("spotify-web-api-node")
 const app = express()
 app.use(cors())
 
-const whitelist = ["https://cheery-sopapillas-e36df2.netlify.app"]
+const whitelist = ["https://https://aiplaylist.netlify.app"]
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
