@@ -8,7 +8,6 @@ const app = express()
 const OpenAI = require('openai-api');
 const { Configuration, OpenAIApi } = require("openai");
 
-app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
