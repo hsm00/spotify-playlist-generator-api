@@ -6,7 +6,6 @@ const bodyParser = require("body-parser")
 const SpotifyWebApi = require("spotify-web-api-node")
 
 const app = express()
-app.use(cors())
 
 const whitelist = ["https://aiplaylist.netlify.app"]
 const corsOptions = {
