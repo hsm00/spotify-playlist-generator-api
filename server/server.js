@@ -7,26 +7,21 @@ const SpotifyWebApi = require("spotify-web-api-node")
 
 const app = express()
 
-const whitelist = ["https://aiplaylist.netlify.app"]
+// Set up cors options
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error("Not allowed by CORS"))
-    }
-  },
-  credentials: true,
+  origin: "https://yourdomain.com", // replace with your domain
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
-app.use(cors(corsOptions))
 
 app.use(bodyParser.json())
+
+// Enable CORS with whitelist
+app.use(cors(corsOptions))
+
 // app.use(bodyParser.urlencoded({ extended: true }))
 
 const apiToken = require("./routes/apiToken/apiToken")
 
 app.use(apiToken);
-
-
 
 app.listen(process.env.PORT || 3001);
