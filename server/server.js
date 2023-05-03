@@ -5,20 +5,30 @@ const bodyParser = require("body-parser")
 // const lyricsFinder = require("lyrics-finder")
 const SpotifyWebApi = require("spotify-web-api-node")
 
-const app = express()
 
 // Set up cors options
-const corsOptions = {
-  origin: "https://aiplaylist.netlify.app", // replace with your domain
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+const express = require('express');
+
+const app = express();
+
+// Allow requests from specific origins
+const allowedOrigins = ['https://aiplaylist.netlify.app'];
+app.use(cors({
+  origin: function(origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified origin.';
+      return callback(new Error(msg), false);
+    }
+
+    return callback(null, true);
+  }
+}));
+
 
 app.use(bodyParser.json())
-
-// Enable CORS with whitelist
-app.use(cors(corsOptions))
-
-// app.use(bodyParser.urlencoded({ extended: true }))
 
 const apiToken = require("./routes/apiToken/apiToken")
 
