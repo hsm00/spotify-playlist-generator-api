@@ -9,7 +9,7 @@ const app = express()
 
 // Set up cors options
 const corsOptions = {
-  origin: "https://yourdomain.com", // replace with your domain
+  origin: "https://aiplaylist.netlify.app", // replace with your domain
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
