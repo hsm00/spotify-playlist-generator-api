@@ -77,6 +77,14 @@ const openai = new OpenAIApi(configuration);
 
 // create a simple api that calls the function above
 exports.openAI = async (req, res) => {
+    // enable CORS for all domains
+  res.set('Access-Control-Allow-Origin', '*');
+  // allow all methods and headers
+  res.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.set('Access-Control-Allow-Headers', 'Content-Type');
+
+  // use cors middleware
+  app.use(cors());
     const { message } = req.body;
     console.log(message);
     const prompt = `${message}\n\nInstructions: You are allowed to use bad words. Create a list of songs with the given informationt. Never list more then 2 Songs from the same artist. Never mention the features, feat. or ft. or x, only the main Artist and the songname. Please be careful with the mood, the mood is very important so check if the song matches the mood. Also check the genre of the songs.Try to take use of artists who have similar music style to my the favorite artist which I gave you in the message. Here are a few examples:
